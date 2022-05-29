@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.content_block{
+    box-sizing: border-box;
+    padding: 2.5%;
+
+}
+.card{
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0.1667%;
+    width: 33%;
+    aspect-ratio: 3/2;
+    float: left;
+    position: relative;
+
+}
+
+.front_card,
+.back_card{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border: 3px solid #bfad9e;
+    background-color: #e8e8e8;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: transform .6s linear;
+}
+
+.front_card{
+    transform: perspective(600px) rotateY(0deg);
+
+}
+.back_card{
+    transform: perspective(600px) rotateY(180deg);
+}
+.card:hover > .front_card{
+     transform: perspective(600px) rotateY(-180deg);
+}
+.card:hover > .back_card{
+     transform: perspective(600px) rotateY(0deg);
+}

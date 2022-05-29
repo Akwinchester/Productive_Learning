@@ -1,0 +1,10 @@
+{% extends 'app_cards/base.html' %}
+{% block title %} Список колод{% endblock %}
+{% block content %}
+    <h1>Домашняя страница</h1>
+    <p>На этой странице представлен список колод</p>
+    {% for deck in decks %}
+        <p><a href="{% url "Deck" deck.id %}">{{ deck.name_deck }}</a></p>
+    {% endfor %}
+{#    <p><a href="{% url "Add_card" %}">Добавить карточку</a></p>#}
+{% endblock %}

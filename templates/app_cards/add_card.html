@@ -1,0 +1,10 @@
+{% extends 'app_cards/base.html' %}
+{% block title %}Добавление карточки{% endblock %}
+
+{% block content %}
+    <h1>Новая карточка</h1>
+    <form action="" method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Добавить карточку" >
+    </form>
+{% endblock %}

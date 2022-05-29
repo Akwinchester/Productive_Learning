@@ -1,0 +1,36 @@
+{% extends 'app_cards/base.html' %}
+{% block title %} Карточки {% endblock %}
+{% block content %}
+    <div class="header"></div>
+    <div class="content_block">
+        {% for card in cards %}
+            <div class="card">
+                <div class="front_card">
+                    <div class="front_card_content center">
+                        {{ card.name_card }}
+                    </div>
+                </div>
+                <div class="back_card">
+                    <div class="back_card_content center">
+                    {{ card.content }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div style="clear: both;"></div>
+    </div>
+{#     <div class="card center">#}
+{#                <div class="front_card">#}
+{#                    <div class="front_card_content center">#}
+{#                        Передняя сторона#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="back_card">#}
+{#                    <div class="back_card_content center">#}
+{#                    Задняя сторона#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        <div style="clear: both;"></div>#}
+
+{% endblock %}

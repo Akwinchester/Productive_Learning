@@ -1,0 +1,7 @@
+{% extends 'app_cards/base.html' %}
+{% block title %}Карточка{% endblock %}
+{% block content %}
+    <p> Вопрос: {{ card.name_card }}</p>
+    <p>Ответ: {{ card.content }}</p>
+    <p><a href="{%  url "Update_card" card.id %}"> Редактировать карточку</a></p>
+{% endblock %}
