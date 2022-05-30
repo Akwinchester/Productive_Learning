@@ -8,6 +8,6 @@
     {% endfor %}
 
     <p><a style="background-color: #aaaaaa" href="{% url "Add_card" deck_number %}">Добавить карточку </a></p>
-    <p><a href="{% url "Deck_test" deck_number %}">Пролистать колоду</a></p>
+    <p><button><a href="{% url "Deck_test" deck_number %}">Пролистать колоду</a></button></p>
 
 {% endblock %}

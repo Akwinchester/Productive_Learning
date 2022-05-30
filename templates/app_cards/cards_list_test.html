@@ -4,7 +4,7 @@
     <div class="header"></div>
     <div class="content_block">
         {% for card in cards %}
-            <div class="card">
+            <div onclick="F({{ card.id }})" class="card" id="button_{{ card.id }}">
                 <div class="front_card">
                     <div class="front_card_content center">
                         {{ card.name_card }}
@@ -17,20 +17,19 @@
                 </div>
             </div>
         {% endfor %}
-        <div style="clear: both;"></div>
-    </div>
-{#     <div class="card center">#}
-{#                <div class="front_card">#}
-{#                    <div class="front_card_content center">#}
-{#                        Передняя сторона#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="back_card">#}
-{#                    <div class="back_card_content center">#}
-{#                    Задняя сторона#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        <div style="clear: both;"></div>#}
 
+
+
+    <script>
+    function F(ID){
+    const button = document.getElementById('button_'+ID);
+    button.classList.toggle('is-flipped');
+{% comment %}    function f() {
+
+        console.log('привет');
+        button.classList.toggle('is-flipped');
+    }
+    button.onclick = f();{% endcomment %}
+    }
+    </script>
 {% endblock %}
