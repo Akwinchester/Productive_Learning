@@ -1,10 +1,23 @@
-{% extends 'app_cards/base.html' %}
+{% extends 'app_cards/base_header_tollbar.html' %}
+{% load static %}
 {% block title %} Список колод{% endblock %}
+
+{% block header %}
+{% endblock %}
+
 {% block content %}
-    <h1>Домашняя страница</h1>
-    <p>На этой странице представлен список колод</p>
+    <h1>Ваши колоды</h1>
+
     {% for deck in decks %}
-        <p><a href="{% url "Deck" deck.id %}">{{ deck.name_deck }}</a></p>
+        <div class="deck_container group">
+            <a  class="hidden_link" style="text-decoration: none" href="{% url "Deck_gallery" deck.id %}">
+                <div class="deck">
+                    <p class="name_deck">
+                        {{ deck.name_deck }}
+                    </p>
+                </div>
+            </a>
+        </div>
     {% endfor %}
-{#    <p><a href="{% url "Add_card" %}">Добавить карточку</a></p>#}
+    <p>{{ random_card.name_card }}</p>
 {% endblock %}

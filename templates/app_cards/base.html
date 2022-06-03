@@ -7,6 +7,12 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+<div class="header group">
+    <img  style="margin-left: 20px; margin-top: 5px" src="{% static "app_cards/images/logo.png" %}">
+    <a class="button_for_header" href="#">войти</a>
+    <a class="button_for_header" href="#">Регистрация</a>
+    {% block header %}{% endblock %}
+</div>
 {% block content %}
 
 {% endblock %}

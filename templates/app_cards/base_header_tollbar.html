@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{% static 'app_cards/css/styles.css' %}" rel="stylesheet" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="header group">
+    <a href="{% url "List_deck" %}"><img  style="margin-left: 20px; margin-top: 5px" src="{% static "app_cards/images/logo.png" %}"></a>
+    <a class="button_for_header" href="#">войти</a>
+    <a class="button_for_header" href="#">Регистрация</a>
+    {% block header %}{% endblock %}
+</div>
+<div name="container group">
+        <div class="toolbar">
+            <p class="button_for_toolbar">Ин-т</p>
+            <p class="button_for_toolbar">Ин-т</p>
+            <p class="button_for_toolbar">Ин-т</p>
+            <p class="button_for_toolbar">Ин-т</p>
+        </div>
+        <div class="content_container">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>

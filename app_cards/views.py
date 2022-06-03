@@ -8,20 +8,13 @@ class List_decks(ListView):
     model = Decks
     template_name = 'app_cards/List_decks.html'
     context_object_name = 'decks'
-
-class Deck(ListView):
-    model = Cards
-    template_name = 'app_cards/cards_list.html'
-    context_object_name = 'cards'
-    def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.select_related().filter(link_to_deck = self.kwargs['deck_number'])
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['deck_number'] = self.kwargs['deck_number']
+        context['random_card'] = Cards.objects.order_by('?').first()
         return context
 
-class Deck_test(ListView):
+
+class Deck_gallery(ListView):
     model = Cards
     template_name = 'app_cards/cards_list_test.html'
     context_object_name = 'cards'

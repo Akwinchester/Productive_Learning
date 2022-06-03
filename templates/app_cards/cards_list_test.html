@@ -1,35 +1,35 @@
-{% extends 'app_cards/base.html' %}
+{% extends 'app_cards/base_header_tollbar.html' %}
 {% block title %} Карточки {% endblock %}
 {% block content %}
-    <div class="header"></div>
     <div class="content_block">
         {% for card in cards %}
-            <div onclick="F({{ card.id }})" class="card" id="button_{{ card.id }}">
-                <div class="front_card">
-                    <div class="front_card_content center">
-                        {{ card.name_card }}
+            <div class="card_box">
+                <div class="card" onclick="rotate_card({{ card.id }})"  id="button_{{ card.id }}">
+                    <div class="front_card">
+                        <div class="front_card_content center">
+                            {{ card.name_card }}
+                        </div>
+                    </div>
+                    <div class="back_card">
+                        <div class="back_card_content center">
+                        {{ card.content }}
+                        </div>
                     </div>
                 </div>
-                <div class="back_card">
-                    <div class="back_card_content center">
-                    {{ card.content }}
-                    </div>
-                </div>
+                <div class="button_for_card"><a style="text-decoration: none" href="{%  url "Update_card" card.id %}"> Редактировать</a></div>
+                <div class="button_for_card"><a style="text-decoration: none" href="#"> Удалить</a></div>
+                <div class="button_for_card"><a style="text-decoration: none" href="#"> Сбросить прогресс</a></div>
+            <div style="clear: both;"></div>
             </div>
+
         {% endfor %}
-
-
+    <div class="button_for_card"><a style="text-decoration: none" href="{% url "Add_card" deck_number %}">Добавить карточку </a></div>
+    </div>
 
     <script>
-    function F(ID){
+    function rotate_card(ID){
     const button = document.getElementById('button_'+ID);
     button.classList.toggle('is-flipped');
-{% comment %}    function f() {
-
-        console.log('привет');
-        button.classList.toggle('is-flipped');
-    }
-    button.onclick = f();{% endcomment %}
     }
     </script>
 {% endblock %}
