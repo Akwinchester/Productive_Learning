@@ -1,9 +1,9 @@
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 body{
+    margin: 0;
+    padding: 0;
     font-family:Comic Sans MS, Comic Sans, cursive, Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', serif;
 }
 .group:after {
@@ -39,13 +39,44 @@ body{
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 30%;
-    padding-top: 20%;
+
     width: 70%;
     aspect-ratio: 1/1;
     border-radius: 50%;
     background-color: #f78723;
     font-size: 10px;
 
+}
+/*  значек +   */
+.plus {
+  --t:2px;   /* Thickness */
+  --l: 40px;  /* size of the symbol */
+  --s:10px;  /* space around the symbol */
+  --c1:#fff; /* Plus color*/
+  --c2:#000; /* background color*/
+
+  display:inline-block;
+  padding:20%;
+  box-sizing:border-box; /*Remove this if you don't want space to be included in the size*/
+
+  background:
+    linear-gradient(var(--c1),var(--c1)) content-box,
+    linear-gradient(var(--c1),var(--c1)) content-box,
+    var(--c2);
+  background-position:center;
+  background-size: 100% var(--t),var(--t) 100%;
+  background-repeat:no-repeat;
+}
+
+.radius {
+  border-radius:50%;
+}
+/*  значек +   */
+
+
+.form{
+    margin: 5px;
+    position: relative;
 }
 .content_container{
     width: 86%;

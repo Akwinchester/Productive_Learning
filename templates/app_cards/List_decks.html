@@ -5,19 +5,25 @@
 {% block header %}
 {% endblock %}
 
+{% block toolbar %}
+    <a  class="plus radius button_for_toolbar" style="--t:3px;--c2:#f78723" href="{% url 'Add_deck' %}"></a>
+{% endblock %}
+
 {% block content %}
     <h1>Ваши колоды</h1>
 
     {% for deck in decks %}
-        <div class="deck_container group">
-            <a  class="hidden_link" style="text-decoration: none" href="{% url "Deck_gallery" deck.id %}">
-                <div class="deck">
-                    <p class="name_deck">
-                        {{ deck.name_deck }}
-                    </p>
-                </div>
-            </a>
-        </div>
+        {% if deck.id_user_id == request.user.id %}
+            <div class="deck_container group">
+                <a  class="hidden_link" style="text-decoration: none" href="{% url "Deck_gallery" deck.id %}">
+                    <div class="deck">
+                        <p class="name_deck">
+                            {{ deck.name_deck }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
     {% endfor %}
     <p>{{ random_card.name_card }}</p>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'app_cards/base_header_tollbar.html' %}
+{% block content %}
+    <div class="center">
+    <h1>Создать колоду</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button_for_header">Добавить</button>
+        </form>
+    </div>
+{% endblock %}
