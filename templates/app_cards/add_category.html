@@ -1,0 +1,12 @@
+{% extends 'app_cards/base_header_tollbar.html' %}
+{% block title %}Добавление категории{% endblock %}
+{% block content %}
+        <div class="center">
+        <h1>Создать категорию</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button_for_header">Добавить</button>
+        </form>
+    </div>
+{% endblock %}

@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
 class Categories(models.Model):
-    name_category =models.CharField(max_length=100, default='')
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name_category =models.CharField(max_length=100, default='', verbose_name='Название категории')
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return self.name_category
 
@@ -12,7 +12,7 @@ class Decks(models.Model):
     amount_cards = models.IntegerField(default=0)
     persent_studied = models.IntegerField(default=0)
     id_category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория',default=1)
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return self.name_deck
 
@@ -24,7 +24,7 @@ class Cards(models.Model):
     last_repetitions_date = models.DateTimeField(auto_now=True, verbose_name='дата последнего повторения')
     number_repetitions = models.IntegerField(default=0)
     link_to_deck = models.ManyToManyField(Decks, verbose_name='Колода',blank=True)
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     def get_absolute_url(self):
         return reverse('Card', kwargs={'pk': self.id})
     def __str__(self):

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import List_decks, Card, Add_card_to_deck, Update_card, Deck_gallery, Add_user, Login_user, Logout_user, Add_deck
+from .views import List_decks, Card, Add_card_to_deck, Update_card, Deck_gallery, Add_user, Login_user, Logout_user, Add_deck, Add_category
 
 urlpatterns = [
     path('home_page/', List_decks.as_view(), name='List_deck'),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('login/', Login_user.as_view(), name='Login_user'),
     path('logout/', Logout_user, name='Logout_user'),
     path('add_deck/', Add_deck.as_view(), name='Add_deck'),
+    path('add_category/', Add_category.as_view(), name='Add_category'),
 ]

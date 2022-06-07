@@ -25,12 +25,12 @@ body{
     background-color: #009ac7;
     color:  white;
 }
+/*toolbar\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 .toolbar{
     text-align: center;
-    width: 5%;
+    width: 7%;
     aspect-ratio: 1/20;
-    float: left;
-    margin-right: 0.5%;
+    float: left;    margin-right: 0.5%;
     background-color: #2c3031;
     color: white;
 }
@@ -47,6 +47,10 @@ body{
     font-size: 10px;
 
 }
+
+/*toolbar\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+
 /*  значек +   */
 .plus {
   --t:2px;   /* Thickness */
@@ -58,7 +62,6 @@ body{
   display:inline-block;
   padding:20%;
   box-sizing:border-box; /*Remove this if you don't want space to be included in the size*/
-
   background:
     linear-gradient(var(--c1),var(--c1)) content-box,
     linear-gradient(var(--c1),var(--c1)) content-box,

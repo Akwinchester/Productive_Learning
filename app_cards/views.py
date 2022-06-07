@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Decks, Cards
+from .models import Decks, Cards, Categories
 from django.urls import reverse_lazy
 from .forms import Register_User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -14,6 +14,7 @@ class List_decks(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['random_card'] = Cards.objects.order_by('?').first()
+        context['categories'] = Categories.objects.filter(id_user_id=self.request.user.id)
         return context
 
 
@@ -46,16 +47,20 @@ class Add_card_to_deck(CreateView):
     fields = ('name_card', 'content')
     def form_valid(self, form):
         user_id = self.request.user.id
+        card = form.save(commit=False)
+        card.id_user_id = user_id
         card = form.save()
         card.link_to_deck.add(self.kwargs['deck_number'])
-        card.id_user_id = user_id
         return super().form_valid(form)
 
 
 class Update_card(UpdateView):
     model = Cards
     template_name = 'app_cards/update_card.html'
-    fields = ['name_card', 'content', 'link_to_deck']
+    fields = ['name_card', 'content']
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(id_user_id=self.request.user.id)
 
 class Add_user(CreateView):
     form_class = Register_User
@@ -83,6 +88,17 @@ class Add_deck(CreateView):
     success_url = reverse_lazy('List_deck')
     def form_valid(self, form):
         user_id = self.request.user.id
-        deck = form.save()
+        deck = form.save(commit=False)
         deck.id_user_id = user_id
+        return super().form_valid(form)
+
+class Add_category(CreateView):
+    model = Categories
+    fields = ['name_category',]
+    template_name = 'app_cards/add_category.html'
+    success_url = reverse_lazy('List_deck')
+    def form_valid(self, form):
+        user_id = self.request.user.id
+        category = form.save(commit=False)
+        category.id_user_id = user_id
         return super().form_valid(form)
