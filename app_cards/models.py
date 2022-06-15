@@ -11,7 +11,7 @@ class Decks(models.Model):
     name_deck = models.CharField(max_length=50, verbose_name='Название')
     amount_cards = models.IntegerField(default=0)
     persent_studied = models.IntegerField(default=0)
-    id_category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория',default=1)
+    id_category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория',blank=True, null=True)
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return self.name_deck

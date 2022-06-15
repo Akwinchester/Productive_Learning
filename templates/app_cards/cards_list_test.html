@@ -2,6 +2,11 @@
 {% block title %} Карточки {% endblock %}
 {% block content %}
     <div class="content_block">
+         <div class="group" style="box-sizing: border-box; padding: 3%">
+            <div  style="width: 50%; margin: 0"><h1>{{ deck.name_deck }}</h1></div>
+            <div style=" float: left"><a class="button_delete_category" href="{% url 'Delete_deck' deck_number %}">Удалить колоду</a></div>
+            <div style=" float: left"><a class="button_delete_category" style="background-color: #006b1b" href="#">Статистика по колоде</a></div>
+        </div>
         {% for card in cards %}
             <div class="card_box">
                 <div class="card" onclick="rotate_card({{ card.id }})"  id="button_{{ card.id }}">
@@ -16,14 +21,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="button_for_card"><a style="text-decoration: none" href="{%  url "Update_card" card.id %}"> Редактировать</a></div>
-                <div class="button_for_card"><a style="text-decoration: none" href="#"> Удалить</a></div>
-                <div class="button_for_card"><a style="text-decoration: none" href="#"> Сбросить прогресс</a></div>
+                <div class="button_for_card"><a style="text-decoration: none;  color: white" href="{%  url "Update_card" card.id %}"> Редактировать</a></div>
+                <div class="button_for_card" style="width:40%"><a style="text-decoration: none;color: white" href="#"> Сбросить прогресс</a></div>
+                <div class="button_for_card" style="background-color: red"><a style="text-decoration: none;color: white" href="{% url 'Delete_card' deck_number card.id %}"> Удалить</a></div>
+
             <div style="clear: both;"></div>
             </div>
 
         {% endfor %}
-    <div class="button_for_card"><a style="text-decoration: none" href="{% url "Add_card" deck_number %}">Добавить карточку </a></div>
+        <div class="button_add group">
+            <a class="button_add_a plus radius" style="--t:5px;--c2:#f78723" href="{% url "Add_card" deck_number %}"> </a>
+        </div>
     </div>
 
     <script>

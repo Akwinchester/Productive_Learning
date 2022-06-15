@@ -1,0 +1,55 @@
+{% extends 'app_cards/base_header_tollbar.html' %}
+{% load static %}
+{% block title %} Список колод{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block toolbar %}
+    <div class="group" style="background-color: #2c3031f5; text-align: left">
+        <div class="group" style="margin-left: 10px">
+            <div style="width: 60%; height: 20%; float: left; margin-right: 5px">Категории</div>
+            <a class="plus_category" href="{% url 'Add_category' %}"></a>
+        </div>
+        <a class="link_category" href="{% url 'List_deck_category' 'all' %}">Все колоды</a>
+        {% for category in categories %}
+            <a class="link_category" href="{% url 'List_deck_category' category.id %}">{{ category.name_category }}</a>
+        {% endfor %}
+
+        <a class="link_category" style="background-color: red; margin-top: 50px" href="{% url 'Create_test_set' %}">Создать тестовый набор</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="group" style="box-sizing: border-box; padding: 3%">
+        {% if category_id == 'all' %}
+            <div style="width: 50%; margin: 0"><h1>Все колоды</h1></div>
+        {% else %}
+            <div  style="width: 50%; margin: 0"><h1>{{ name_used_category}}</h1></div>
+            <div style=" float: left"><a class="button_delete_category" href="{% url 'Delete_category' category_id %}">Удалить категорию</a></div>
+            <div style=" float: left"><a class="button_delete_category" style="background-color: #006b1b" href="#">Статистика по категории</a></div>
+        {% endif %}
+
+    </div>
+    {% for deck in decks %}
+        {% if deck.id_user_id == request.user.id %}
+            <div class="deck_container group">
+                <a  class="hidden_link" style="text-decoration: none" href="{% url "Deck_gallery" deck.id %}">
+                    <div class="deck">
+                        <p class="name_deck">
+                            {{ deck.name_deck }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <p>{{ random_card.name_card }}</p>
+    <div class="button_add group">
+    {% if category_id == 'all' %}
+        <a class="button_add_a plus radius" style="--t:5px;--c2:#f78723" href="{% url 'Add_deck' id_generic_category %}"></a>
+    {% else %}
+        <a class="button_add_a plus radius" style="--t:5px;--c2:#f78723" href="{% url 'Add_deck' category_id %}"></a>
+    {% endif %}
+    </div>
+{% endblock %}
