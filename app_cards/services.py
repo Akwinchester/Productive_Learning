@@ -1,5 +1,5 @@
 from .models import Cards, Categories, Decks
-#удаление карточек вынесено в отдельную функцию, так как связь между карточкой и колодой реализована, как многие ко многим
+
 def Create_category_decks_cards_test(user_id): #функция автоматически создающая категорию с двумя колодами
     name_test_category = 'Тестовая категория'
     Categories.objects.create(name_category=name_test_category, id_user_id=user_id).save()
@@ -19,7 +19,7 @@ def Create_category_decks_cards_test(user_id): #функция автомати�
     card = Cards.objects.create(name_card='Карточка 4', content='Текст карточки 4', id_user_id=user_id)
     card.link_to_deck.add(deck_2)
     card.save()
-
+#удаление карточек вынесено в отдельную функцию, так как связь между карточкой и колодой реализована, как многие ко многим
 def Delete_cards_from_deck(user_id, deck_id):
     cards_for_delete = Cards.objects.filter(link_to_deck=deck_id)
     for card in cards_for_delete:

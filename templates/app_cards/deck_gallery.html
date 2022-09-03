@@ -1,5 +1,13 @@
 {% extends 'app_cards/base_header_tollbar.html' %}
 {% block title %} Карточки {% endblock %}
+{% block toolbar %}
+    <div class="group" style="background-color: #2c3031f5; text-align: left">
+        <a class="button_for_toolbar" style="background-color: #035b19; border-radius: 5px" href="#">тест</a>
+        <a class="button_for_toolbar" style="background-color: #035b19; border-radius: 5px" href="#">пролистать</a>
+        <a class="button_for_toolbar" style="background-color: #035b19; border-radius: 5px" href="#">статистика</a>
+        <a class="button_for_toolbar" style="background-color: red; border-radius: 5px" href="{% url 'Delete_deck' deck_number %}">удалить</a>
+    </div>
+{% endblock %}
 {% block content %}
     <div class="content_block">
          <div class="group" style="box-sizing: border-box; padding: 3%">

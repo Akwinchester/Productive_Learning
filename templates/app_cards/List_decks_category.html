@@ -11,12 +11,20 @@
             <div style="width: 60%; height: 20%; float: left; margin-right: 5px">Категории</div>
             <a class="plus_category" href="{% url 'Add_category' %}"></a>
         </div>
-        <a class="link_category" href="{% url 'List_deck_category' 'all' %}">Все колоды</a>
+        {% if category_id == 'all' %}
+            <a class="button_for_toolbar" style="background-color: black" href="{% url 'List_deck_category' 'all' %}">Все колоды</a>
+        {% else%}
+            <a class="button_for_toolbar" href="{% url 'List_deck_category' 'all' %}">Все колоды</a>
+        {% endif %}
         {% for category in categories %}
-            <a class="link_category" href="{% url 'List_deck_category' category.id %}">{{ category.name_category }}</a>
+            {% if category.id == category_id_int %}
+                <a class="button_for_toolbar" style="background-color: black" href="{% url 'List_deck_category' category.id %}">{{ category.name_category }}</a>
+            {% else %}
+                <a class="button_for_toolbar" href="{% url 'List_deck_category' category.id %}">{{ category.name_category }}</a>
+            {% endif %}
         {% endfor %}
 
-        <a class="link_category" style="background-color: red; margin-top: 50px" href="{% url 'Create_test_set' %}">Создать тестовый набор</a>
+        <a class="button_for_toolbar" style="background-color: red; margin-top: 50px" href="{% url 'Create_test_set' %}">Создать тестовый набор</a>
     </div>
 {% endblock %}
 
@@ -44,7 +52,6 @@
             </div>
         {% endif %}
     {% endfor %}
-    <p>{{ random_card.name_card }}</p>
     <div class="button_add group">
     {% if category_id == 'all' %}
         <a class="button_add_a plus radius" style="--t:5px;--c2:#f78723" href="{% url 'Add_deck' id_generic_category %}"></a>

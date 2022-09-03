@@ -14,8 +14,12 @@ body{
   clear: both;
 }
 .header{
-
+    position: fixed;
+    padding-right: 1.5vw;
     background-color: #2c3031;
+    width: 100vw;
+    height: 6vh;
+    z-index: 2;
 }
 
 .button_for_header{
@@ -50,10 +54,13 @@ body{
     background-color: #F78723FF;
 }
 .toolbar{
+    position: fixed;
     text-align: center;
     width: 9%;
-    aspect-ratio: 1/20;
-    float: left;    margin-right: 0.5%;
+    min-height: 94vh;
+    float: left;
+    margin-right: 0.5%;
+    margin-top: 6vh;
     background-color: #2c3031;
     color: white;
 }
@@ -65,16 +72,15 @@ body{
     padding: 5px 5px;
     border-radius: 5px;
     color:  white;
-    border: 1px darkred solid;
 }
-.link_category{
-    border: 1px solid rgba(24, 23, 23, 0.77);
+.button_for_toolbar{
+    border: 2px solid rgba(24, 23, 23, 0.77);
     background-color: #26292a;
     display: block;
-    margin-top: 1%;
+    margin-top: 2%;
     padding: 1%;
     width: 90%;
-    text-align: left;
+    text-align: center;
     margin-left: 5%;
     margin-right: 5%;
     text-decoration: none;
@@ -127,6 +133,8 @@ div.button_add{
     width: 86%;
     float: right;
     margin-right:  2%;
+    margin-top: 6vh;
+    z-index: 1;
 }
 .deck_container{
     width: 24%;
@@ -185,6 +193,7 @@ p.name_deck{
     position: relative;
     transition: transform 1s;
     transform-style: preserve-3d;
+    box-shadow: 0 4px 16px 2px #4043493b;
 
 
 }

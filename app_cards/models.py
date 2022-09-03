@@ -1,11 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
+
+
 class Categories(models.Model):
     name_category =models.CharField(max_length=100, default='', verbose_name='Название категории')
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
     def __str__(self):
         return self.name_category
+
 
 class Decks(models.Model):
     name_deck = models.CharField(max_length=50, verbose_name='Название')
@@ -13,8 +17,10 @@ class Decks(models.Model):
     persent_studied = models.IntegerField(default=0)
     id_category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория',blank=True, null=True)
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
     def __str__(self):
         return self.name_deck
+
 
 class Cards(models.Model):
     name_card = models.CharField(max_length=200, default='', verbose_name="название карточки")
@@ -25,8 +31,9 @@ class Cards(models.Model):
     number_repetitions = models.IntegerField(default=0)
     link_to_deck = models.ManyToManyField(Decks, verbose_name='Колода',blank=True)
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
     def get_absolute_url(self):
         return reverse('Card', kwargs={'pk': self.id})
+
     def __str__(self):
         return self.name_card
-
